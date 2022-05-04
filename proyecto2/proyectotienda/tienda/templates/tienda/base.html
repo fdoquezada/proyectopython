@@ -12,9 +12,9 @@
 </head>
 <body>
     <nav class="nav">
-        <a class="nav-link active" aria-current="page" href="#">Active</a>
-        <a class="nav-link" href="#">Link</a>
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="{% url 'index' %}">Home</a>
+        <a class="nav-link" href="{% url 'contacto' %}">contacto</a>python
+        <a class="nav-link" href="{% url 'clientes' %}">clientes</a>
         <a class="nav-link disabled">Disabled</a>
       </nav>
     {% block content %}   
