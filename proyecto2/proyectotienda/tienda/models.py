@@ -15,6 +15,7 @@ class Cliente(models.Model):
 
     def _str_(self):
         return self.nombre + " " + self.apellidoPaterno + " " + self.apellidoMaterno
+        
 class Proveedores(models.Model):
     nombre=models.CharField(max_length=50)
     apellidoPaterno=models.CharField(max_length=50)
