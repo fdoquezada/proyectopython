@@ -1,0 +1,18 @@
+                  Listado de relaciones
+ Esquema |           Nombre           | Tipo  |  Dueño   
+---------+----------------------------+-------+----------
+ public  | auth_group                 | tabla | fernando
+ public  | auth_group_permissions     | tabla | fernando
+ public  | auth_permission            | tabla | fernando
+ public  | auth_user                  | tabla | fernando
+ public  | auth_user_groups           | tabla | fernando
+ public  | auth_user_user_permissions | tabla | fernando
+ public  | django_admin_log           | tabla | fernando
+ public  | django_content_type        | tabla | fernando
+ public  | django_migrations          | tabla | fernando
+ public  | django_session             | tabla | fernando
+ public  | ventas_cliente             | tabla | fernando
+ public  | ventas_pedidos             | tabla | fernando
+ public  | ventas_proveedores         | tabla | fernando
+(13 filas)
+
