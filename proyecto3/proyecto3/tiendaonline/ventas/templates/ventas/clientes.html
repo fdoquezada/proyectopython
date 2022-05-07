@@ -1,7 +1,31 @@
 {% extends "ventas/layout.html" %}
+
+
 {% block content %}
 
 
+<div id='tabla'>
+
+    <table>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Email</th>
+        <th>Telefono</th>
+        <th>Direccion</th>
+      </tr>
+      {% for cli in data %}  
+      <tr>
+        <td>{{cli.nombre}}</td>
+        <td>{{cli.apellido}}</td>
+        <td>{{cli.email}}</td>
+        <td>{{cli.telefono}}</td>
+        <td>{{cli.ciudad}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  
+  </div>
 
 
 {% endblock  %}

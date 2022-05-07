@@ -20,5 +20,5 @@ def formulario(request):
 
 
 def clientes(request):
-    cliente= Cliente.objects.all()
-    return render(request, '/ventas/clientes.html', {"data":cliente})
+    usuario= Cliente.objects.all()
+    return render(request, 'ventas/clientes.html', {"data":usuario})
