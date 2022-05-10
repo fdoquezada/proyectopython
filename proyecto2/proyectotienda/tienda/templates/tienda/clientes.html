@@ -7,6 +7,17 @@
     <title>Clientes</title>
    </head>
 <body>
+
+<div id='tabla'>
+
+    <table>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Correo</th>
+        <th>Ciudad</th>
+        <th>Telefono</th>
+      </tr>
     {% for cli in data %}
         <p>{{ cli.nombre }}</p>
         <p>{{ cli.apellidos }}</p>
@@ -16,5 +27,6 @@
  
       
     {% endfor %}
+    </table>
 </body>
 </html>
