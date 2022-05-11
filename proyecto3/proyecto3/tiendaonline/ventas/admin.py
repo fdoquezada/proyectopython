@@ -1,6 +1,9 @@
 from django.contrib import admin
+from django.urls import path
 from ventas.models import *
+from django.urls import path
 # Register your models here.
+from django.http import HttpResponse
 
 
 class clienteAdmin(admin.ModelAdmin):
@@ -22,9 +25,16 @@ class ventasAdmin(admin.ModelAdmin):
     search_fields = ('valor', 'stock', 'unidad')
 
 
-admin.site.register(Cliente, clienteAdmin)
-admin.site.register(Proveedore, proveedoresAdmin)
-admin.site.register(pedido, pedidosAdmin)
-admin.site.register(venta, ventasAdmin)
+admin.site.register(Cliente)
+admin.site.register(Proveedor)
+admin.site.register(pedido)
+admin.site.register(venta)
 admin.site.register(Categoria)
 admin.site.register(Subcategoria)
+
+
+
+
+class ProveedorAdmin(admin.ModelAdmin):
+    list_display = ["categoria", "subcategoria", "related"]
+    list_display_links = ["categoria", "related"]

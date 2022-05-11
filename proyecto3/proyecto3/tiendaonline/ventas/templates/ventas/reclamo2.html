@@ -1,0 +1,12 @@
+{% extends "ventas/layout.html" %}
+{% block content %}
+
+<form action="/reclamo2" method="POST">
+
+{% csrf_token %}
+{{ form.as_p}}
+
+<button>Enviar</button>
+</form>
+{{respuesta}}
+{% endblock %}

@@ -12,34 +12,32 @@ class Cliente(models.Model):
 
     def __str__(self): 
         return self.nombre
-        
+
 class Subcategoria(models.Model):
-   sub_categoria=models.CharField(max_length=50)
-
-   def __str__(self):
-       return self.sub_categoria
-
-
-
-class Categoria(models.Model):
-    nombre_categoria=models.CharField(max_length=50)
-    sub_categoria=models.ForeignKey(Subcategoria, null=True, on_delete=models.SET_NULL)
-
-
-    def __str__(self): 
-        return self.nombre_categoria
-
-    
-class Proveedore(models.Model):  
-    nombre=models.CharField(max_length=50)
-    apellido=models.CharField(max_length=50)
-    mail=models.EmailField(max_length=50)
-    telefono=models.CharField(max_length=50)
-    direccion=models.CharField(max_length=50)
-    categoria=models.ForeignKey(Categoria, null=True, on_delete=models.SET_NULL)
+    nombre=models.CharField(max_length=50, verbose_name="nombre subcategoria")
 
     def __str__(self):
         return self.nombre
+
+class Categoria(models.Model):
+    nombre=models.CharField(max_length=50, verbose_name="nombre categoria")
+
+    def __str__(self):
+        return self.nombre
+
+class Proveedor(models.Model):
+    nombre=models.CharField(max_length=50)
+    categoria=models.ForeignKey(Categoria, null=True, on_delete=models.CASCADE)
+    subcategoria=models.ForeignKey(Subcategoria, null=True, on_delete=models.CASCADE) 
+    correo=models.EmailField(max_length=100)
+    ciudad=models.CharField(max_length=50)
+    telefono=models.CharField(max_length=15)
+
+    def __str__(self):
+        return self.nombre
+        return self.nombre
+
+
 
 class pedido(models.Model):
     numero=models.IntegerField()
