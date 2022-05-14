@@ -40,9 +40,10 @@ def reclamo2(request):
 def login(request):
     if request.method == "POST":
         form = LoginForm(data=request.POST)
-        usuario= form.cleaneded_data["nombre"]
-        clave= form.cleaneded_data["password"]
-        user = authenticate(request, username=usuario, password=clave)
+        if form.is_valid():
+            usuario= form.cleaneded_data["nombre"]
+            clave= form.cleaneded_data["password"]
+            user = authenticate(request, username=usuario, password=clave)
         if user is not None:
             auth_login(request, user)
         return render(request,'ventas/bienvenido/', {"user": user})

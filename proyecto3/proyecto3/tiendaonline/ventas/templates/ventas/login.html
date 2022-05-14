@@ -4,10 +4,15 @@
 {% block title %} contacto {% endblock %}
 
 {% block content %}
+
 {% csrf_token %}
+
 <form action="login" method="post" >
     {{ form.as_p}}
+    
+
     <button>Login</button>
+
 </form>
 {% endblock %}
 
