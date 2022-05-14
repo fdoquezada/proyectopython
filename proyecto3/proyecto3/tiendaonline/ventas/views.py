@@ -1,11 +1,13 @@
-import re
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from .models import Cliente
-from .forms import ReclamoForm, LoginForm
+from .forms import ReclamoForm,LoginForm
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.shortcuts import render
-from django.contrib.auth import authenticate,  login as  auth_login
+from django.contrib.auth import authenticate,  login as auth_login
+from django.contrib.auth.decorators import login_required, permission_required
+
 
 # Create your views here.
 def index(request):
@@ -36,17 +38,30 @@ def reclamo2(request):
         form = ReclamoForm()
         return render(request, 'ventas/reclamo2.html', {"form": form})
 
-
+@csrf_exempt
 def login(request):
     if request.method == "POST":
-        form = LoginForm(data=request.POST)
+        form = LoginForm(data =request.POST)
+
         if form.is_valid():
-            usuario= form.cleaneded_data["nombre"]
-            clave= form.cleaneded_data["password"]
+            usuario=request.POST["nombre"]
+            clave=request.POST["password"]
             user = authenticate(request, username=usuario, password=clave)
-        if user is not None:
-            auth_login(request, user)
-        return render(request,'ventas/bienvenido/', {"user": user})
+            if user is not None:
+
+                auth_login(request, user)
+
+        return render(request,'ventas/bienvenido.html/', {"user": user})
     else:
         form = LoginForm()
         return render(request, 'ventas/login.html', {"form": form})  
+
+
+    
+@login_required
+def bienvenido (request):
+    return render (request, 'ventas/bienvenido.html')
+       
+def salir(request):
+    logout(request)
+    return redirect ("/login")

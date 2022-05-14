@@ -2,11 +2,20 @@
 
 
 {% block title %} bienvenido {% endblock %}
+       
+    
 
 {% block content %}
+<div id="bienvenido">
 
-{{user.username}}
-{{ request.user.username }}
+<h1>Bienvenido {{user.username}}</h1>
+
+</div>
+
+{% endblock %}
+
+
+
+
 
     
-{% endblock %}  

@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls.conf import include
 from ventas import views
+from django.contrib.auth import login
 from django.urls import path
 
 
@@ -24,4 +25,5 @@ urlpatterns = [
       
     path('', include('ventas.urls')),
     path('admin/', admin.site.urls),
+    path('',login, {'template_name':'ventas/index.html'}, name='index'),
   ]

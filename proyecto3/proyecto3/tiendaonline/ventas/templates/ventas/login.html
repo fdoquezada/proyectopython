@@ -5,9 +5,12 @@
 
 {% block content %}
 
+<form action="" method="post" >
+
 {% csrf_token %}
 
-<form action="login" method="post" >
+
+  
     {{ form.as_p}}
     
 

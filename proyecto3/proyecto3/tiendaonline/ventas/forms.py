@@ -1,5 +1,6 @@
 from django import forms
 from django.db.models import fields
+from django.contrib.auth.models import User
 
 class ReclamoForm(forms.Form):
     nombre = forms.CharField(max_length=100)
@@ -8,5 +9,5 @@ class ReclamoForm(forms.Form):
     mensaje = forms.CharField(widget=forms.Textarea)
 
 class LoginForm(forms.Form):
-    nombre= forms.CharField(widget=forms.TextInput)
-    password= forms.CharField(widget=forms.PasswordInput)
+    nombre=forms.CharField(widget=forms.TextInput)
+    password=forms.CharField(widget=forms.PasswordInput)

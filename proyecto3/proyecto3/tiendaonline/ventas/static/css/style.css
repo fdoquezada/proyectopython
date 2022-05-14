@@ -18,3 +18,11 @@
 .login {
     text-align: center;
 }
+
+#bienvenido {
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+    margin-top: 5%;
+}
+
