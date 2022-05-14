@@ -26,9 +26,9 @@ class ventasAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Cliente)
-admin.site.register(Proveedor)
 admin.site.register(pedido)
 admin.site.register(venta)
+admin.site.register(Proveedor)
 admin.site.register(Categoria)
 admin.site.register(Subcategoria)
 
