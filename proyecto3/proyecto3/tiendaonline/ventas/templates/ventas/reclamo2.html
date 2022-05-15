@@ -1,12 +1,18 @@
 {% extends "ventas/layout.html" %}
 {% block content %}
+<div class="formulario2>
+    
+    <form action="" method="POST" style="text-align:center;">
+    {% csrf_token %}
+    <table style="color:black; margin: 20px auto;">{{ formulario_conatacto.as_table}}</table>  
+    <input type="submit" value="enviar" class="btn btn-success" > 
 
-<form action="/reclamo2" method="POST">
 
-{% csrf_token %}
-{{ form.as_p}}
 
-<button>Enviar</button>
+
+
 </form>
-{{respuesta}}
+</div>
+<p style="color:white;">{{request.POST}}</p>
+
 {% endblock %}

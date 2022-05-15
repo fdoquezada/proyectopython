@@ -5,16 +5,20 @@
 
 {% block content %}
 
-<form action="" method="post" >
+<div clas="formulario2">
 
-{% csrf_token %}
+<form action="" method="POST" style=text-alieng :center;" >
+    {% csrf_token %}
+    <table style"color:white">{{ form.as_p}}</table>
+    <input type="submit" value="enviar">
+
 
 
   
-    {{ form.as_p}}
+
     
 
-    <button>Login</button>
+    
 
 </form>
 {% endblock %}

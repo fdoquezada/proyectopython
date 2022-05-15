@@ -1,0 +1,12 @@
+{% extends "ventas/layout.html"%}
+{% block content %}
+
+<from class="form" method="post">
+    {% csrf_token %}
+    {{form.as_p }}
+
+    <button type="submit" class="btn btn-primary">Register</button>
+</from>
+    
+    {% endblock %}
+    

@@ -26,4 +26,5 @@ urlpatterns = [
     path('', include('ventas.urls')),
     path('admin/', admin.site.urls),
     path('',login, {'template_name':'ventas/index.html'}, name='index'),
+    
   ]

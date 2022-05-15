@@ -1,5 +1,6 @@
+from multiprocessing import context
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Cliente
 from .forms import ReclamoForm,LoginForm
 from django.http import HttpResponse
@@ -7,8 +8,8 @@ from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.contrib.auth import authenticate,  login as auth_login
 from django.contrib.auth.decorators import login_required, permission_required
-
-
+from .forms import UserRegisterForm
+from django.contrib import messages
 # Create your views here.
 def index(request):
     return render(request, 'ventas/index.html')
@@ -27,16 +28,9 @@ def clientes(request):
     return render(request, 'ventas/clientes.html', {"data":usuario})
 
 def reclamo2(request):
-    if request.method == 'POST':    
-        form=ReclamoForm(data= request.POST)
-        nombre= form["nombre"]
-        email= form["email"]
-        telefono= form["telefono"]
-        mensaje= form["mensaje"]
-        return render(request, 'ventas/reclamo2.html', {"respuesta":"mensaje enviado"})
-    else:
-        form = ReclamoForm()
-        return render(request, 'ventas/reclamo2.html', {"form": form})
+    formulario_conatacto=ReclamoForm()
+    return render(request, 'ventas/reclamo2.html', {'formulario_conatacto':formulario_conatacto})
+
 
 @csrf_exempt
 def login(request):
@@ -65,3 +59,37 @@ def bienvenido (request):
 def salir(request):
     logout(request)
     return redirect ("/login")
+
+
+
+def register (request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            usermane = form.cleaned_data['username']
+            messages.success(request, f'Usuario {usermane} creado correctamente')
+            return redirect('login')
+    else:
+        form = UserRegisterForm()     
+        return render(request, 'ventas/register.html', {'form': form})
+# def profile(request):           
+#         return reder(request, 'ventas/profile.html', context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
