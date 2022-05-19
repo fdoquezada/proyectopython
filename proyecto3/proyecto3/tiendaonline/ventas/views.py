@@ -10,7 +10,9 @@ from django.contrib.auth import authenticate,  login as auth_login
 from django.contrib.auth.decorators import login_required, permission_required
 from .forms import UserRegisterForm
 from django.contrib import messages
-# Create your views here.
+from .forms import NewUserForm
+from .forms import ContactoFrom
+
 def index(request):
     return render(request, 'ventas/index.html')
 
@@ -71,14 +73,40 @@ def register (request):
             messages.success(request, f'Usuario {usermane} creado correctamente')
             return redirect('login')
     else:
-        form = UserRegisterForm()     
-        return render(request, 'ventas/register.html', {'form': form})
-# def profile(request):           
+           form = UserRegisterForm()
+    context = {'form':form}
+    return render(request, 'ventas/register.html', context)
 #         return reder(request, 'ventas/profile.html', context)
 
+def contacto(request):
+    data = {
+        'form' : ContactoFrom()
+        
+    }
+    if request.method == 'POST':
+        formulario = ContactoFrom(data=request.POST)
+        if formulario.is_valid():
+           formulario.save()
+           data["mensaje"]= "contanto guardado"
+        else:
+            data["form"] =formulario        
+    
+    return render(request,'ventas/contacto.html', data)
 
+# def register(request):
+#     form = NewUserForm()
+#     if request.method == "POST":
+#         form = NewUserForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             username = form.cleaned_data['username']
+#             messages.success(request, f'Usuario {username} creado exitosamente.')
+#             return redirect('login')
+#     else:
 
-
+#         form = NewUserForm()
+#     context = {'form':form}
+#     return render(request, 'ventas/register.html', context)
 
 
 

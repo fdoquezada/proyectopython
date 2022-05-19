@@ -31,7 +31,7 @@ admin.site.register(venta)
 admin.site.register(Proveedor)
 admin.site.register(Categoria)
 admin.site.register(Subcategoria)
-
+admin.site.register(Contacto)
 
 
 
