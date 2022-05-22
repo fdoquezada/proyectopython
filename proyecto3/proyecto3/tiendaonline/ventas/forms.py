@@ -13,25 +13,51 @@ class ReclamoForm(forms.Form):
 class LoginForm(forms.Form):
     nombre=forms.CharField(widget=forms.TextInput)
     password=forms.CharField(widget=forms.PasswordInput)
+    
 
 class UserRegisterForm(UserCreationForm):
-    email = forms.EmailField() 
-    password1 = forms.CharField(label= 'contraseña', widget=forms.PasswordInput)
-    password2 = forms.CharField(label= 'confirmar contraseña', widget=forms.PasswordInput)
-    class Meta:
-        model = User
-        fields = ['username','email','password1','password2']
-        help_texts = {k:"" for k in fields }
-class NewUserForm(UserCreationForm):
     email = forms.EmailField()
     password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput)
     password2 = forms.CharField(label="Confirmar contraseña", widget=forms.PasswordInput)
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
-        help_texts = {k:"" for k in fields}
+        help_texts = {k:"" for k in fields}    
+    
+    
+    
+
+# class UserRegisterForm(UserCreationForm):
+#     email = forms.EmailField() 
+#     password1 = forms.CharField(label= 'contraseña', widget=forms.PasswordInput)
+#     password2 = forms.CharField(label= 'confirmar contraseña', widget=forms.PasswordInput)
+#     class Meta:
+#         model = User
+#         fields = ['username','email','password1','password2']
+#         help_texts = {k:"" for k in fields }
+# class NewUserForm(UserCreationForm):
+#     email = forms.EmailField()
+#     password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput)
+#     password2 = forms.CharField(label="Confirmar contraseña", widget=forms.PasswordInput)
+#     class Meta:
+#         model = User
+#         fields = ['username', 'email', 'password1', 'password2']
+#         help_texts = {k:"" for k in fields} 
         
 class ContactoFrom(forms.ModelForm):
     class Meta:
         model = Contacto
         fields = '__all__'
+
+def register(request):
+    if request.method == "POST":
+        form = UserRegisterForm(request.POST)
+    if form.is_valid():
+        form.save()
+        username = form.cleaned_data['username']
+        messages.success(request, f'Usuario {username} creado exitosamente.')
+        return redirect('login')
+    else:
+        form = UserRegisterForm()
+    context = {'form':form}
+    return render(request, 'aplicacion/register.html', context)

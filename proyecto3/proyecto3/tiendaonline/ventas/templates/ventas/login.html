@@ -1,3 +1,7 @@
+
+
+
+
 {% extends "ventas/layout.html" %}
 
 
@@ -21,5 +25,17 @@
     
 
 </form>
-{% endblock %}
+{% endblock %} 
 
+
+
+
+
+{% comment %} {% extends "ventas/layout.html" %}
+{% block content %}
+<form action="" method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<button type="submit">Login</button>
+</form>
+{% endblock %} {% endcomment %}

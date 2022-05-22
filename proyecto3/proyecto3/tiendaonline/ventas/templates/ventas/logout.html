@@ -1,5 +1,15 @@
-{% extends 'aplicacion1/layout.html' %}
+{% extends "ventas/layout.html" %}
 {% block content %}
 <h1>Te has deslogueado</h1>
-<a type="button" href="{% url 'login1' %}">Ingresar nuevamente</a>
+<a type="button" href="{% url 'login' %}">Ingresar nuevamente</a>
+{% if messages %}
+
+{%for message in messages%}
+<div>
+{{message}}
+</div>
+{% endfor %}
+{% endif %}
+
+
 {% endblock %}

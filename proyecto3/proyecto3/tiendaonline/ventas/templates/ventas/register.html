@@ -1,10 +1,21 @@
 lines (11 sloc) 296 Bytes
+
 {% extends 'ventas/layout.html' %}
 {% block content %}
 <form action="" method="POST">
-
-
     {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Registrarse</button>
+    </form>
+    {% endblock %}
+
+
+
+
+
+
+
+{% comment %}     {% csrf_token %}
     <div id='form_registro'>
         <h1> Registro de Usuarios </h1>
 
@@ -16,24 +27,15 @@ lines (11 sloc) 296 Bytes
 </form>
 
 {% endblock %}
+ {% endcomment %}
 
 
 
 
 
-{% comment %} 
 
 
 
-{% extends "ventas/layout.html"%}
-{% block content %}
 
-<from class="form" method="POST">
-    {% csrf_token %}
-    <table style"color:white">{{form.as_p }}</table>
 
-    <button type="submit" class="btn btn-primary">Register</button>
-</from>
-    
-    {% endblock %}
-  {% endcomment %}
+

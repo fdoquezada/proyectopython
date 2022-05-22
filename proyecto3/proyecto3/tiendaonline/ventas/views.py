@@ -7,10 +7,12 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.contrib.auth import authenticate,  login as auth_login
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required, permission_required
 from .forms import UserRegisterForm
 from django.contrib import messages
-from .forms import NewUserForm
+from django.contrib.auth.decorators import login_required
+# from .forms import NewUserForm
 from .forms import ContactoFrom
 
 def index(request):
@@ -33,6 +35,9 @@ def reclamo2(request):
     formulario_conatacto=ReclamoForm()
     return render(request, 'ventas/reclamo2.html', {'formulario_conatacto':formulario_conatacto})
 
+''' @login_required
+def index(request):
+    return render(request, 'ventas/index.html', context) '''
 
 @csrf_exempt
 def login(request):
@@ -44,10 +49,19 @@ def login(request):
             clave=request.POST["password"]
             user = authenticate(request, username=usuario, password=clave)
             if user is not None:
-
                 auth_login(request, user)
-
-        return render(request,'ventas/bienvenido.html/', {"user": user})
+                return redirect ('index')
+            else:
+                messages.error(request,"Nombre o contraseña no válidos.")
+                form=LoginForm()
+                return render(request,'ventas/login.html/', {"login_form": form})
+        else:
+                messages.error(request,"Nombre o contraseña no válidos.")
+                form=LoginForm()
+                return render (request, 'ventas/login.html', {"form": form})
+    
+    
+    
     else:
         form = LoginForm()
         return render(request, 'ventas/login.html', {"form": form})  
@@ -57,26 +71,34 @@ def login(request):
 @login_required
 def bienvenido (request):
     return render (request, 'ventas/bienvenido.html')
-       
+
+
+
+@login_required      
 def salir(request):
     logout(request)
+    messages.info(request, "Haz cerrado sesión exitosamente.") 
     return redirect ("/login")
 
 
 
-def register (request):
-    if request.method == 'POST':
+
+def register(request):
+    form = UserRegisterForm()
+   
+    if request.method == "POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            usermane = form.cleaned_data['username']
-            messages.success(request, f'Usuario {usermane} creado correctamente')
+            username = form.cleaned_data['username']
+            messages.success(request, f'Usuario {username} creado exitosamente.')
             return redirect('login')
     else:
-           form = UserRegisterForm()
+
+        form = UserRegisterForm()
     context = {'form':form}
     return render(request, 'ventas/register.html', context)
-#         return reder(request, 'ventas/profile.html', context)
+
 
 def contacto(request):
     data = {
@@ -93,23 +115,28 @@ def contacto(request):
     
     return render(request,'ventas/contacto.html', data)
 
-# def register(request):
-#     form = NewUserForm()
-#     if request.method == "POST":
-#         form = NewUserForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             username = form.cleaned_data['username']
-#             messages.success(request, f'Usuario {username} creado exitosamente.')
-#             return redirect('login')
-#     else:
 
-#         form = NewUserForm()
+
+
+
+# def register (request):
+#     if request.method == 'POST':
+#         form = UserRegisterForm(request.POST)
+#         if form.is_valid():
+#             nombre=form.cleaned_data["nombre"]
+#             email=form.cleaned_data["email"]
+#             clave=form.cleaned_data["password"]
+#             user= User.objects.create_user(nombre, email, clave)
+#             user.saved()
+#             # usermane = form.cleaned_data['username']
+#             #messages.success(request, f'Usuario {usermane} creado correctamente')
+#             return redirect('login')
+#             form.save()
+#     else:
+#            form = UserRegisterForm()
 #     context = {'form':form}
 #     return render(request, 'ventas/register.html', context)
-
-
-
+# #         return reder(request, 'ventas/profile.html', context)
 
 
 
