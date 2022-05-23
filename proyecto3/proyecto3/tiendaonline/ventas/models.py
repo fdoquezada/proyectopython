@@ -72,5 +72,16 @@ class Contacto(models.Model):
     
     def __str__(self):
         return self.nombre
+class Producto(models.Model):
+    nombre=models.CharField(max_length=50)
+    precio=models.IntegerField()
+    stock =models.IntegerField()
+
+    
+class Usuario(models.Model):
+    rut=models.CharField(max_length=50) 
+    nombre=models.IntegerField()   
+    apellido =models.ImageField
+    
     
 

@@ -35,6 +35,8 @@ admin.site.register(Contacto)
 
 
 
+
+
 class ProveedorAdmin(admin.ModelAdmin):
     list_display = ["categoria", "subcategoria", "related"]
     list_display_links = ["categoria", "related"]

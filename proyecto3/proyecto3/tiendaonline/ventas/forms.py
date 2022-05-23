@@ -3,6 +3,7 @@ from django.db.models import fields
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import Contacto
+from .models import Producto
 
 class ReclamoForm(forms.Form):
     nombre = forms.CharField(label="nombre",required=True)
@@ -49,15 +50,11 @@ class ContactoFrom(forms.ModelForm):
         model = Contacto
         fields = '__all__'
 
-def register(request):
-    if request.method == "POST":
-        form = UserRegisterForm(request.POST)
-    if form.is_valid():
-        form.save()
-        username = form.cleaned_data['username']
-        messages.success(request, f'Usuario {username} creado exitosamente.')
-        return redirect('login')
-    else:
-        form = UserRegisterForm()
-    context = {'form':form}
-    return render(request, 'aplicacion/register.html', context)
+
+
+class FormProducto(forms.ModelForm):
+    class Meta:
+        model = Producto
+        fields=('nombre', 'precio', 'stock')
+        
+

@@ -14,6 +14,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 # from .forms import NewUserForm
 from .forms import ContactoFrom
+from.forms import FormProducto
 
 def index(request):
     return render(request, 'ventas/index.html')
@@ -83,6 +84,7 @@ def salir(request):
 
 
 
+
 def register(request):
     form = UserRegisterForm()
    
@@ -114,6 +116,20 @@ def contacto(request):
             data["form"] =formulario        
     
     return render(request,'ventas/contacto.html', data)
+
+def agregarProducto(request):
+    form=FormProducto()
+    if  request.method == "POST":
+        form = FormProducto(data =request.POST)
+        producto= form.save(commit=False)
+        producto.save()
+        return render(request,'ventas/mensajeExito.html', {"producto":producto})
+    else: 
+        return render(request, 'ventas/crearproducto.html',{"form":form})   
+                                                    
+        
+     
+
 
 
 

@@ -10,10 +10,10 @@ urlpatterns = [
     path('reclamo2/', views.reclamo2, name='reclamo2'),
     path('login/', views.login, name='login'),
     path('bienvenido/', views.bienvenido, name='bienvenido'),
-    path('salir/', views.salir, name='salir'),
+  
     path('register/', views.register, name='register'),
     path('login/', LoginView.as_view(template_name='ventas/login.html'), name='login'),
     path('logout/', LogoutView.as_view(template_name='ventas/logout.html'), name='logout'),
-     
+      path('agregar/', views.agregarProducto),
    
 ]

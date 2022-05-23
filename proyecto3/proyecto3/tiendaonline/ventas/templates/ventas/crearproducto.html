@@ -1,0 +1,22 @@
+
+{% extends "ventas/layout.html" %}
+{% block content %}
+
+<div class="container ">
+    
+         
+        
+        <h2>crear producto:</h2>
+
+        <form action="" method="POST" >
+        {% csrf_token %}
+        {{ form.as_p}}
+
+        <button>Crear</button>
+
+    
+
+         </form>
+    
+</div>
+{% endblock %} 
