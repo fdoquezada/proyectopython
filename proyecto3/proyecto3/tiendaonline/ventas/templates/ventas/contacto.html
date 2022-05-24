@@ -1,19 +1,37 @@
 {% extends "ventas/layout.html" %}
 {% block content %}
+{% load crispy_forms_tags %}
+<br>
+<br>
+<div class="row">
+  <br>
+  <br>
+  
+  <div class="container ">
+    <div class= "col-12 col-md-5 offset-md-3">
+      <div class="card">
+        <div class="card-body">
+            <h2>Contactanos:</h2>
+            <hr>
+            <form action="" class=""  method="post">
 
-<div class="container">
-<table class= "table table-bordered table-striped">
-  <h2 class="text-center" style="text-shadow: 3px 3px 3px rgb(3, 3, 9);">Contactanos:</h2>
-   <form action="" class="formulario_contacto">
+              {% csrf_token %}
+   
+              {{form|crispy}}
+              <br>
+              <div class="d-flex justify-content-end">
+                  <input type="reset"  value="cancelar" class="btn btn-secundary">
+                  &nbsp;
+                  <button class="btn btn-primary" type="submit" id="btnEnviar" >Enviar</button>
+              </div>            
+              
+              
+            </form>
 
-    {% csrf_token %}
-    {{ form }}
-  </table>
-    <button class="btn btn-primary" type="submit" id="btnEnviar" >Enviar</button>
-  </form>
-
-
+              {{mensaje}}
  
-</div>
-
+          </div>
+      </div> 
+    </div>   
+</div>             
 {% endblock  %}

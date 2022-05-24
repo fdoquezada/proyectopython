@@ -2,23 +2,34 @@ lines (11 sloc) 296 Bytes
 
 {% extends "ventas/layout.html" %}
 {% block content %}
+{% load crispy_forms_tags%}
 
 <div class="container ">
-    <table class= "table table-bordered table-striped">
-         
+    <div class= "col-14 col-md-5 offset-md-3">
+
+   
+            <div class="card">
+                <div class="card-body">   
         
-        <h2>crear usuario:</h2>
+                    <h2>crear usuario:</h2>
 
-        <form action="" method="POST" >
-        {% csrf_token %}
-        {{ form.as_p}}
+                        <form action="" method="POST" >
+                            {% csrf_token %}
+      {% comment %}   {{ form.as_p}} {% endcomment %}
+                                {{ form|crispy}} 
+      
 
-        <input class="btn btn-primary float-right" type="submit" value="enviar">
+
+                            <input type="reset"  value="cancelar" class="btn btn-secundary">
+                            &nbsp;
+                            <input class="btn btn-primary float-right" type="submit" value="enviar">
 
     
 
-         </form>
-    </table> 
+                        </form>
+                </div>
+            </div>   
+    </div>
 </div>
 {% endblock %} 
         

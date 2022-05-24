@@ -1,0 +1,24 @@
+{% extends "ventas/layout.html" %}
+{% block content %}
+
+
+<table>
+    <tead>
+        <tr>
+            <td>ID</td><td>Nombre</td><td>Precio</td><td>Stock</td>
+         </tr>
+        </thead>  
+        <tbody>
+            {% for pro in productos%}
+             <tr>
+                 <ts>{{ pro.id  }}</td>
+                 <td>{{ pro.nombre }}</td>
+                 <td>{{ pro.precio }}</td>
+                 <td>{{ pro.stock  }}</td>
+            </tr>     
+
+             {%end for%}
+        </tbody>
+
+</table>
+{% endblock  %}

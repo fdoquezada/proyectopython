@@ -15,6 +15,8 @@ from django.contrib.auth.decorators import login_required
 # from .forms import NewUserForm
 from .forms import ContactoFrom
 from.forms import FormProducto
+from.models import Producto
+
 
 def index(request):
     return render(request, 'ventas/index.html')
@@ -127,7 +129,13 @@ def agregarProducto(request):
     else: 
         return render(request, 'ventas/crearproducto.html',{"form":form})   
                                                     
-        
+def eliminarProducto():
+    pass
+def editarProducto():
+    pass
+def listarProductos():
+    productos = Producto.objects.all()
+    return render(request,'ventas/productos.html',{"productos":productos})
      
 
 
