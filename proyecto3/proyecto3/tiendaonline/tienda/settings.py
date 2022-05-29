@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'ventas',
-    "import_export",
+    
    
     
 ]
