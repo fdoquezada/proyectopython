@@ -48,8 +48,8 @@ class pedido(models.Model):
 
 class venta(models.Model):
     valor=models.IntegerField()
-    stock=models.DateField()
-    unidad=models.DateField()
+    stock=models.IntegerField()
+    unidad=models.IntegerField()
 
     def _str_(self):
         return self.valor
@@ -72,6 +72,8 @@ class Contacto(models.Model):
     
     def __str__(self):
         return self.nombre
+    
+    
 class Producto(models.Model):
     nombre=models.CharField(max_length=50)
     precio=models.IntegerField()

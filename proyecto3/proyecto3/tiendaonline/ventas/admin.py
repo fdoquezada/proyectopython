@@ -6,23 +6,24 @@ from django.urls import path
 from django.http import HttpResponse
 
 
-class clienteAdmin(admin.ModelAdmin):
-    list_display = ('nombre', 'apellido', 'email', 'telefono', 'direccion')
-    search_fields = ('nombre', 'apellido', 'email', )
 
 
 class proveedoresAdmin(admin.ModelAdmin):
-    list_display = ('nombre', 'apellido', 'mail', 'telefono', 'direccion')
-    search_fields = ('nombre', 'apellido', 'mail', )
+    list_display = ['nombre', 'apellido', 'mail', 'telefono', 'direccion']
+    search_fields = ['nombre', 'apellido', 'mail', 'telefono', 'direccion']
 
 
 class pedidosAdmin(admin.ModelAdmin):
-    list_filter = ('fecha',)
+    list_filter = ['fecha',]
 
 
 class ventasAdmin(admin.ModelAdmin):
-    list_display = ('valor', 'stock', 'unidad')
-    search_fields = ('valor', 'stock', 'unidad')
+    list_display = ['valor', 'stock', 'unidad']
+    search_fields = ['valor', 'stock', 'unidad'] 
+
+class ProductosAdmin(admin.ModelAdmin):
+    list_display = ['nombre', 'precio', 'stock']
+    search_fields = ['nombre', 'precio', 'stock']    
 
 
 admin.site.register(Cliente)
@@ -32,6 +33,7 @@ admin.site.register(Proveedor)
 admin.site.register(Categoria)
 admin.site.register(Subcategoria)
 admin.site.register(Contacto)
+admin.site.register(Producto)
 
 
 
